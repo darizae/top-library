@@ -7,3 +7,4 @@ On the other side, a dynamic grid
 -> has text for the title
 -> When mouse hovering, the book's info pops out as a tooltip of some sorts
 
+For every book added, make the background color of the cover random

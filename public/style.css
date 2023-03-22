@@ -32,6 +32,30 @@ body {
 .book {
     width: 150px;
     height: 200px;
-    background-color: yellow;
+    background-color: #9d7050;
+    border: 1px solid #7a523a;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    gap: 1;
+}
+
+.left-side {
+    background-color: gray;
+    border: 1px solid black;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    width: 10%;
+    margin-right: 14px;
+}
+
+.book-title {
+    background-color: rgba(122, 82, 58, 0.8);
+    color: white;
+    padding: 10px;
+    font-size: 20px;
+    text-align: center;
+    align-self: self-start;
+    margin-top: 10px;
 }
 
