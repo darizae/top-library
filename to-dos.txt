@@ -1,0 +1,9 @@
+Set up HTML and CSS skeleton
+
+On one side have a form for entering a book
+
+On the other side, a dynamic grid
+-> each cell has a book-shaped container, looks like a book
+-> has text for the title
+-> When mouse hovering, the book's info pops out as a tooltip of some sorts
+
