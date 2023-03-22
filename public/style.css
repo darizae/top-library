@@ -61,3 +61,21 @@ body {
     margin-top: 10px;
 }
 
+button {
+    background-color: rgba(122, 82, 58, 0.8);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 3px 3px 0px #a1896b;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #a1896b;
+    box-shadow: none;
+}
