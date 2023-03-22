@@ -1,10 +1,9 @@
-Set up HTML and CSS skeleton
+Make JS file and bind it
 
-On one side have a form for entering a book
+Add Book button should make form visible
 
-On the other side, a dynamic grid
--> each cell has a book-shaped container, looks like a book
--> has text for the title
--> When mouse hovering, the book's info pops out as a tooltip of some sorts
+When mouse hovering, the book's info pops out as a tooltip of some sorts
 
 For every book added, make the background color of the cover random
+
+Pressing add book when form is already present does nothing
