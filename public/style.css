@@ -4,7 +4,8 @@ body {
 }
 
 #header {
-    background-color: lightblue;
+    background-image: url(img/silver-background.jpg);
+    background-size: cover;
     min-height: 100px;
     display: flex;
     justify-content: space-evenly;
@@ -12,7 +13,8 @@ body {
 }
 
 #content {
-    background-color: lightpink;
+    background-image: url(img/wooden-texture.jpg);
+    background-size: cover;
     min-height: 900px;
     display: flex;
     justify-content: center;
@@ -20,7 +22,7 @@ body {
 }
 
 #display {
-    background-color: lightgreen;
+
     min-width: 900px;
     min-height: 500px;
     display: grid;
