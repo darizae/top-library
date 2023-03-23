@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 // Making form visible
 
 const formSpace = document.getElementById('form-space');
@@ -50,13 +51,45 @@ function getFormValues() {
   ];
 }
 
+function areEqualBooks(book1, book2) {
+  const keys1 = Object.keys(book1);
+  const keys2 = Object.keys(book2);
+
+  if (keys1.length !== keys2.length) {
+    return false;
+  }
+
+  // eslint-disable-next-line no-restricted-syntax
+  for (const key of keys1) {
+    if (keys1[key] !== keys2[key]) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function bookIsAlreadyInLibrary(newBook) {
+  // eslint-disable-next-line no-restricted-syntax
+  for (const book in library) {
+    if (areEqualBooks(book, newBook)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
 function addBookToLibrary(event) {
   event.preventDefault();
   const newBookInfo = getFormValues();
 
   const newBook = new Book(newBookInfo[0], newBookInfo[1], newBookInfo[2], newBookInfo[3]);
 
-  // bookAlreadyInLibrary()
+  if (bookIsAlreadyInLibrary(newBook)) {
+    alert('Book is already in library');
+    return;
+  }
 
   library.push(newBook);
 

@@ -1,9 +1,9 @@
-Make JS file and bind it
 
-Add Book button should make form visible
 
 When mouse hovering, the book's info pops out as a tooltip of some sorts
 
 For every book added, make the background color of the cover random
 
 Pressing add book when form is already present does nothing
+
+Check if book is already in the library when going to add. Check for properties, except read
