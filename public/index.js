@@ -71,7 +71,7 @@ function areEqualBooks(book1, book2) {
 
 function bookIsAlreadyInLibrary(newBook) {
   // eslint-disable-next-line no-restricted-syntax
-  for (const book in library) {
+  for (const book of library) {
     if (areEqualBooks(book, newBook)) {
       return true;
     }
