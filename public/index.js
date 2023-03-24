@@ -93,10 +93,12 @@ function generateRandomColor() {
   return `rgb(${r}, ${g}, ${b})`;
 }
 
-function addBookToDisplay(title, index) {
+function addBookToDisplay(title, index, info) {
   const bookDiv = document.createElement('div');
   bookDiv.classList.add('book');
+
   bookDiv.style.backgroundColor = generateRandomColor();
+  bookDiv.setAttribute('title', info);
   bookDiv.setAttribute('data-index', index);
 
   const leftSideDiv = document.createElement('div');
@@ -136,7 +138,7 @@ function addBookToLibrary(event) {
   }
 
   library.push(newBook);
-  addBookToDisplay(newBook.title, library.indexOf(newBook));
+  addBookToDisplay(newBook.title, library.indexOf(newBook), newBook.info());
 
   removeForm();
 }
