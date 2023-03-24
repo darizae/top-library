@@ -51,6 +51,11 @@ function getFormValues() {
   ];
 }
 
+function removeForm() {
+  form.reset();
+  makeFormInvisible();
+}
+
 function areEqualBooks(book1, book2) {
   if (book1.title === book2.title
       && book1.author === book2.author
@@ -102,9 +107,11 @@ function addBookToLibrary(event) {
   library.push(newBook);
   addBookToDisplay();
 
-  form.reset();
-  makeFormInvisible();
+  removeForm();
 }
 
 const submitButton = document.getElementById('submit-button');
 submitButton.addEventListener('click', addBookToLibrary);
+
+const cancelButton = document.getElementById('cancel-button');
+cancelButton.addEventListener('click', removeForm);
