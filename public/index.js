@@ -76,7 +76,7 @@ function bookIsAlreadyInLibrary(newBook) {
   return false;
 }
 
-function addBookToDisplay() {
+function addBookToDisplay(title) {
   const bookDiv = document.createElement('div');
   bookDiv.classList.add('book');
 
@@ -86,7 +86,7 @@ function addBookToDisplay() {
 
   const bookTitleDiv = document.createElement('div');
   bookTitleDiv.classList.add('book-title');
-  bookTitleDiv.textContent = 'Book Title';
+  bookTitleDiv.textContent = title;
   bookDiv.appendChild(bookTitleDiv);
 
   const displayDiv = document.getElementById('display');
@@ -117,7 +117,7 @@ function addBookToLibrary(event) {
   }
 
   library.push(newBook);
-  addBookToDisplay();
+  addBookToDisplay(newBook.title);
 
   removeForm();
 }
