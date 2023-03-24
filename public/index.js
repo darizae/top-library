@@ -76,9 +76,27 @@ function bookIsAlreadyInLibrary(newBook) {
   return false;
 }
 
+function generateRandomColor() {
+  const baseColor = [37, 150, 190]; // RGB values for the base color
+  const maxDelta = 30; // Maximum difference for each RGB value
+
+  // Generate a random delta for each RGB value
+  const deltaR = Math.floor(Math.random() * maxDelta) * (Math.random() < 0.5 ? -1 : 1);
+  const deltaG = Math.floor(Math.random() * maxDelta) * (Math.random() < 0.5 ? -1 : 1);
+  const deltaB = Math.floor(Math.random() * maxDelta) * (Math.random() < 0.5 ? -1 : 1);
+
+  // Calculate the new RGB values based on the base color and the deltas
+  const r = Math.max(0, Math.min(255, baseColor[0] + deltaR));
+  const g = Math.max(0, Math.min(255, baseColor[1] + deltaG));
+  const b = Math.max(0, Math.min(255, baseColor[2] + deltaB));
+
+  return `rgb(${r}, ${g}, ${b})`;
+}
+
 function addBookToDisplay(title) {
   const bookDiv = document.createElement('div');
   bookDiv.classList.add('book');
+  bookDiv.style.backgroundColor = generateRandomColor();
 
   const leftSideDiv = document.createElement('div');
   leftSideDiv.classList.add('left-side');

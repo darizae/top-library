@@ -44,7 +44,8 @@ body {
   width: 150px;
   height: 200px;
   background-color: #9d7050;
-  border: 1px solid #7a523a;
+  border: 1px solid;
+  border-color: #7a523a;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   position: relative;
   overflow: hidden;
