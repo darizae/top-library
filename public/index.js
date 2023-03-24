@@ -52,21 +52,12 @@ function getFormValues() {
 }
 
 function areEqualBooks(book1, book2) {
-  const keys1 = Object.keys(book1);
-  const keys2 = Object.keys(book2);
-
-  if (keys1.length !== keys2.length) {
-    return false;
+  if (book1.title === book2.title
+      && book1.author === book2.author
+      && book1.pages === book2.pages) {
+    return true;
   }
-
-  // eslint-disable-next-line no-restricted-syntax
-  for (const key of keys1) {
-    if (keys1[key] !== keys2[key]) {
-      return false;
-    }
-  }
-
-  return true;
+  return false;
 }
 
 function bookIsAlreadyInLibrary(newBook) {
@@ -78,6 +69,23 @@ function bookIsAlreadyInLibrary(newBook) {
   }
 
   return false;
+}
+
+function addBookToDisplay() {
+  const bookDiv = document.createElement('div');
+  bookDiv.classList.add('book');
+
+  const leftSideDiv = document.createElement('div');
+  leftSideDiv.classList.add('left-side');
+  bookDiv.appendChild(leftSideDiv);
+
+  const bookTitleDiv = document.createElement('div');
+  bookTitleDiv.classList.add('book-title');
+  bookTitleDiv.textContent = 'Book Title';
+  bookDiv.appendChild(bookTitleDiv);
+
+  const displayDiv = document.getElementById('display');
+  displayDiv.appendChild(bookDiv);
 }
 
 function addBookToLibrary(event) {
@@ -92,6 +100,7 @@ function addBookToLibrary(event) {
   }
 
   library.push(newBook);
+  addBookToDisplay();
 
   form.reset();
   makeFormInvisible();
