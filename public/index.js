@@ -95,6 +95,18 @@ function addBookToDisplay() {
 
 function addBookToLibrary(event) {
   event.preventDefault();
+
+  const requiredInputs = form.querySelectorAll('input[required]');
+
+  // eslint-disable-next-line no-restricted-syntax
+  for (const input of requiredInputs) {
+    if (!input.value) {
+      event.preventDefault();
+      alert('Please fill out all required fields.');
+      return;
+    }
+  }
+
   const newBookInfo = getFormValues();
 
   const newBook = new Book(newBookInfo[0], newBookInfo[1], newBookInfo[2], newBookInfo[3]);
