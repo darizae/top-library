@@ -1,7 +1,3 @@
-Make it so that upon adding of a new book, a new book div is created and added
+Figure out the thing with the toggle
 
-When mouse hovering, the book's info pops out as a tooltip of some sorts
-
-For every book added, make the background color of the cover random
-
-Check if book is already in the library when going to add. Check for properties, except read
+The label and the styling basically, will have to do some indexing I think

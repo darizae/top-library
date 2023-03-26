@@ -1,3 +1,5 @@
+/* eslint-disable no-use-before-define */
+/* eslint-disable radix */
 /* eslint-disable no-alert */
 // Making form visible
 
@@ -93,7 +95,9 @@ function generateRandomColor() {
   return `rgb(${r}, ${g}, ${b})`;
 }
 
-function addBookToDisplay(title, index, info) {
+const displayDiv = document.getElementById('display');
+
+function generateBook(title, index, info) {
   const bookDiv = document.createElement('div');
   bookDiv.classList.add('book');
 
@@ -110,8 +114,37 @@ function addBookToDisplay(title, index, info) {
   bookTitleDiv.textContent = title;
   bookDiv.appendChild(bookTitleDiv);
 
-  const displayDiv = document.getElementById('display');
-  displayDiv.appendChild(bookDiv);
+  return bookDiv;
+}
+
+function generateReadToggle() {
+  const readStatus = document.createElement('input');
+  readStatus.classList.add('toggle-read');
+  readStatus.setAttribute('type', 'checkbox');
+
+  readStatus.addEventListener('click', () => {
+
+  });
+
+  const readLabel = document.createElement('label');
+  readLabel.classList.add('read-label');
+  readLabel.textContent = 'Read';
+  readLabel.setAttribute('for', 'toggle-read');
+
+  return [readStatus, readLabel];
+}
+
+function addBookToDisplay(title, index, info) {
+  const bookCell = document.createElement('div');
+  bookCell.classList.add('book-cell');
+
+  const toggle = generateReadToggle();
+
+  bookCell.appendChild(generateBook(title, index, info));
+  bookCell.appendChild(toggle[0]);
+  bookCell.appendChild(toggle[1]);
+
+  displayDiv.appendChild(bookCell);
 }
 
 function addBookToLibrary(event) {
@@ -148,3 +181,72 @@ submitButton.addEventListener('click', addBookToLibrary);
 
 const cancelButton = document.getElementById('cancel-button');
 cancelButton.addEventListener('click', removeForm);
+
+const removalButton = document.createElement('button');
+removalButton.textContent = 'Remove';
+removalButton.classList.add('header-button');
+removalButton.setAttribute('id', 'removal');
+// eslint-disable-next-line no-use-before-define
+removalButton.addEventListener('click', removeBook);
+const headerDiv = document.getElementById('header');
+
+function toggleRemovalButton() {
+  if (!headerDiv.contains(removalButton)) {
+    headerDiv.appendChild(removalButton);
+  } else {
+    headerDiv.removeChild(removalButton);
+  }
+}
+
+function removeBook() {
+  const selectedBookDivs = document.querySelectorAll('.selected');
+
+  if (selectedBookDivs.length === 0) {
+    alert('No books selected');
+    return;
+  }
+
+  selectedBookDivs.forEach((bookDiv) => {
+    const index = parseInt(bookDiv.getAttribute('data-index'));
+    library.splice(index, 1);
+    displayDiv.removeChild(bookDiv);
+  });
+
+  toggleRemoveName();
+  toggleRemovalButton();
+}
+
+function toggleSelectivity(bookDiv) {
+  if (bookDiv.onclick === null) {
+    bookDiv.addEventListener('click', () => bookDiv.classList.toggle('selected'));
+  } else {
+    bookDiv.removeEventListener('click', () => bookDiv.classList.toggle('selected'));
+  }
+}
+
+function toggleBookSelection() {
+  const bookDivs = document.querySelectorAll('.book');
+  bookDivs.forEach((book) => {
+    book.classList.remove('selected');
+    toggleSelectivity(book);
+  });
+}
+
+const removeButton = document.getElementById('remove-btn');
+
+function toggleRemoveName() {
+  removeButton.textContent = (!headerDiv.contains(removalButton))
+    ? 'Select the books you want to remove'
+    : 'Remove Book';
+}
+
+removeButton.addEventListener('click', () => {
+  if (library.length === 0) {
+    alert('Library is empty');
+    return;
+  }
+
+  toggleRemoveName();
+  toggleBookSelection();
+  toggleRemovalButton();
+});
