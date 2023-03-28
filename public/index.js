@@ -49,7 +49,7 @@ function getFormValues() {
     formElements[0].value,
     formElements[1].value,
     formElements[2].value,
-    formElements[3].value,
+    formElements[3].checked,
   ];
 }
 
@@ -117,13 +117,18 @@ function generateBook(title, index, info) {
   return bookDiv;
 }
 
-function generateReadToggle() {
+function generateReadToggle(index, read) {
   const readStatus = document.createElement('input');
   readStatus.classList.add('toggle-read');
   readStatus.setAttribute('type', 'checkbox');
+  readStatus.setAttribute('data-index', index);
+  readStatus.checked = read;
 
   readStatus.addEventListener('click', () => {
+    library[index].read = readStatus.checked;
 
+    const bookDiv = document.querySelector(`div.book[data-index="${index}"]`);
+    bookDiv.setAttribute('title', library[index].info());
   });
 
   const readLabel = document.createElement('label');
@@ -134,11 +139,11 @@ function generateReadToggle() {
   return [readStatus, readLabel];
 }
 
-function addBookToDisplay(title, index, info) {
+function addBookToDisplay(title, index, read, info) {
   const bookCell = document.createElement('div');
   bookCell.classList.add('book-cell');
 
-  const toggle = generateReadToggle();
+  const toggle = generateReadToggle(index, read);
 
   bookCell.appendChild(generateBook(title, index, info));
   bookCell.appendChild(toggle[0]);
@@ -171,7 +176,7 @@ function addBookToLibrary(event) {
   }
 
   library.push(newBook);
-  addBookToDisplay(newBook.title, library.indexOf(newBook), newBook.info());
+  addBookToDisplay(newBook.title, library.indexOf(newBook), newBook.read, newBook.info());
 
   removeForm();
 }
