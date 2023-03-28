@@ -136,7 +136,12 @@ function generateReadToggle(index, read) {
   readLabel.textContent = 'Read';
   readLabel.setAttribute('for', 'toggle-read');
 
-  return [readStatus, readLabel];
+  const readDiv = document.createElement('div');
+  readDiv.classList.add('read-div');
+  readDiv.appendChild(readLabel);
+  readDiv.appendChild(readStatus);
+
+  return readDiv;
 }
 
 function addBookToDisplay(title, index, read, info) {
@@ -146,8 +151,7 @@ function addBookToDisplay(title, index, read, info) {
   const toggle = generateReadToggle(index, read);
 
   bookCell.appendChild(generateBook(title, index, info));
-  bookCell.appendChild(toggle[0]);
-  bookCell.appendChild(toggle[1]);
+  bookCell.appendChild(toggle);
 
   displayDiv.appendChild(bookCell);
 }
@@ -214,7 +218,7 @@ function removeBook() {
   selectedBookDivs.forEach((bookDiv) => {
     const index = parseInt(bookDiv.getAttribute('data-index'));
     library.splice(index, 1);
-    displayDiv.removeChild(bookDiv);
+    displayDiv.removeChild(bookDiv.parentNode);
   });
 
   toggleRemoveName();
