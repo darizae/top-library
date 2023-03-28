@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 /* eslint-disable no-use-before-define */
 /* eslint-disable radix */
 /* eslint-disable no-alert */
@@ -259,3 +260,60 @@ removeButton.addEventListener('click', () => {
   toggleBookSelection();
   toggleRemovalButton();
 });
+
+function createRandomBooks() {
+  const titles = [
+    'The Great Gatsby',
+    'To Kill a Mockingbird',
+    '1984',
+    'Pride and Prejudice',
+    'Animal Farm',
+    'The Catcher in the Rye',
+    'Lord of the Flies',
+    'Brave New World',
+    'One Hundred Years of Solitude',
+    'Wuthering Heights',
+    'The Color Purple',
+    'The Bell Jar',
+    'Atonement',
+    'The Handmaid\'s Tale',
+    'Beloved',
+  ];
+
+  const authors = [
+    'F. Scott Fitzgerald',
+    'Harper Lee',
+    'George Orwell',
+    'Jane Austen',
+    'George Orwell',
+    'J.D. Salinger',
+    'William Golding',
+    'Aldous Huxley',
+    'Gabriel Garcia Marquez',
+    'Emily Bronte',
+    'Alice Walker',
+    'Sylvia Plath',
+    'Ian McEwan',
+    'Margaret Atwood',
+    'Toni Morrison',
+  ];
+
+  const maxPages = 1000;
+  const minPages = 100;
+
+  for (let i = 0; i < 15; i++) {
+    const title = titles[Math.floor(Math.random() * titles.length)];
+    const author = authors[Math.floor(Math.random() * authors.length)];
+    const pages = Math.floor(Math.random() * (maxPages - minPages) + minPages);
+    const read = Math.random() < 0.5;
+
+    const newBook = new Book(title, author, pages, read);
+    if (!bookIsAlreadyInLibrary(newBook)) {
+      library.push(newBook);
+      addBookToDisplay(newBook.title, library.indexOf(newBook), newBook.read, newBook.info());
+    }
+  }
+}
+
+const randomBooksButton = document.getElementById('random-btn');
+randomBooksButton.addEventListener('click', createRandomBooks);
